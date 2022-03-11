@@ -6,12 +6,14 @@
 package lab8p2_felixdominguez_12141043;
 
 import java.awt.Color;
+import java.util.Random;
 
 /**
  *
  * @author Lenovo I7
  */
 public class McQueen extends Auto{
+    Random r=new Random();
 
     public McQueen() {
     }
@@ -25,8 +27,9 @@ public class McQueen extends Auto{
     }
     
     @Override
-    public void setDistancia(int distancia) {
-        super.setDistancia(distancia);
+    public void RandomDistancias(){
+        int ran=30+r.nextInt(160);
+        super.setDistancia(ran);
     }
 
     @Override

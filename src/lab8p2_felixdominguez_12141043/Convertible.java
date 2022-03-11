@@ -6,12 +6,14 @@
 package lab8p2_felixdominguez_12141043;
 
 import java.awt.Color;
+import java.util.Random;
 
 /**
  *
  * @author Lenovo I7
  */
 public class Convertible extends Auto{
+    Random r=new Random();
 
     public Convertible() {
     }
@@ -25,8 +27,9 @@ public class Convertible extends Auto{
     }
     
     @Override
-    public void setDistancia(int distancia) {
-        super.setDistancia(distancia);
+    public void RandomDistancias(){
+        int ran=20+r.nextInt(180);
+        super.setDistancia(ran);
     }
     
     @Override

@@ -6,12 +6,13 @@
 package lab8p2_felixdominguez_12141043;
 
 import java.awt.Color;
+import java.io.Serializable;
 
 /**
  *
  * @author Lenovo I7
  */
-public class Auto {
+public class Auto implements Serializable{
     private int id;
     private String nombre;
     private Color color;
@@ -64,6 +65,10 @@ public class Auto {
 
     public void setDistancia(int distancia) {
         this.distancia = distancia;
+    }
+    
+    public void RandomDistancias(){
+        setDistancia(0);
     }
 
     @Override

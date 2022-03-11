@@ -6,6 +6,7 @@
 package lab8p2_felixdominguez_12141043;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.Color;
 import javax.swing.UIManager;
 
 /**
@@ -197,11 +198,13 @@ public class Principal extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-         try{
+        try{
             UIManager.setLookAndFeel(new FlatDarkLaf());
         }catch(Exception e){
             e.printStackTrace();
         }
+        
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
