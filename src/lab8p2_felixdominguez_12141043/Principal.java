@@ -7,10 +7,12 @@ package lab8p2_felixdominguez_12141043;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.UIManager;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,6 +20,8 @@ import javax.swing.JOptionPane;
  */
 public class Principal extends javax.swing.JFrame {
     Color a;
+    DefaultComboBoxModel modelo;
+    ArrayList<Auto>autos=new ArrayList();
 
     /**
      * Creates new form Principal
@@ -26,7 +30,9 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         AdminAuto aa=new AdminAuto("./Autos.cbm");
         aa.cargarArchivo();
-        DefaultComboBoxModel modelo=new DefaultComboBoxModel();
+        modelo=new DefaultComboBoxModel(aa.getLista().toArray());
+        ComboBoxAgregar.setModel(modelo);
+        autos=aa.getLista();
     }
 
     /**
@@ -87,6 +93,22 @@ public class Principal extends javax.swing.JFrame {
 
         LargoTexto.setText("______");
 
+        Tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Identificador", "Corredor", "Distancia"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(Tabla);
 
         AgregarBoton.setText("Agregar");
@@ -248,6 +270,33 @@ public class Principal extends javax.swing.JFrame {
 
     private void AgregarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarBotonActionPerformed
         // TODO add your handling code here:
+        /*Tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Identificador", "Corredor", "Distancia"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(Tabla);*/
+        
+        Object[] fila={
+                autos.get(ComboBoxAgregar.getSelectedIndex()).getId(),
+                autos.get(ComboBoxAgregar.getSelectedIndex()).getNombre(),
+                autos.get(ComboBoxAgregar.getSelectedIndex()).getDistancia()
+            };
+            DefaultTableModel model = (DefaultTableModel) Tabla.getModel();
+            model.addRow(fila);
+            Tabla.setModel(model);
+        
     }//GEN-LAST:event_AgregarBotonActionPerformed
 
     private void ColorBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorBotonActionPerformed
@@ -261,28 +310,43 @@ public class Principal extends javax.swing.JFrame {
         try{
             String i=NumeroID.getText().replace(" ", "");
             int id=Integer.parseInt(i);
-            if(ComboBoxTipo.getSelectedItem()=="McQueen"){
-                McQueen m=new McQueen(id,CorredorNombre.getText(),a);
-                AdminAuto aa=new AdminAuto("./Autos.cbm");
-                aa.cargarArchivo();
-                aa.setPersona(m);
-                aa.escribirArchivo();
-                JOptionPane.showMessageDialog(null, "Se ha agregado excitosamente");
-            }else if(ComboBoxTipo.getSelectedItem()=="Convertible"){
-                Convertible m=new Convertible(id,CorredorNombre.getText(),a);
-                AdminAuto aa=new AdminAuto("./Autos.cbm");
-                aa.cargarArchivo();
-                aa.setPersona(m);
-                aa.escribirArchivo();
-                JOptionPane.showMessageDialog(null, "Se ha agregado excitosamente");
-            }else if(ComboBoxTipo.getSelectedItem()=="Nacar"){
-                Nascar m=new Nascar(id,CorredorNombre.getText(),a);
-                AdminAuto aa=new AdminAuto("./Autos.cbm");
-                aa.cargarArchivo();
-                aa.setPersona(m);
-                aa.escribirArchivo();
-                JOptionPane.showMessageDialog(null, "Se ha agregado excitosamente");
-            }
+            if(unico(id)==true){
+                JOptionPane.showMessageDialog(null, "Debe de ingresar un numero identificador que no exista aun");
+                
+            }else{
+                if(ComboBoxTipo.getSelectedItem()=="McQueen"){
+                    McQueen m=new McQueen(id,CorredorNombre.getText(),a);
+                    modelo.addElement(m);
+                    ComboBoxAgregar.setModel(modelo);
+                    AdminAuto aa=new AdminAuto("./Autos.cbm");
+                    aa.cargarArchivo();
+                    aa.setPersona(m);
+                    aa.escribirArchivo();
+                    JOptionPane.showMessageDialog(null, "Se ha agregado excitosamente");
+                    autos.add(m);
+                }else if(ComboBoxTipo.getSelectedItem()=="Convertible"){
+                    Convertible m=new Convertible(id,CorredorNombre.getText(),a);
+                    modelo.addElement(m);
+                    ComboBoxAgregar.setModel(modelo);
+                    AdminAuto aa=new AdminAuto("./Autos.cbm");
+                    aa.cargarArchivo();
+                    aa.setPersona(m);
+                    aa.escribirArchivo();
+                    JOptionPane.showMessageDialog(null, "Se ha agregado excitosamente");
+                    autos.add(m);
+                }else if(ComboBoxTipo.getSelectedItem()=="Nacar"){
+                    Nascar m=new Nascar(id,CorredorNombre.getText(),a);
+                    modelo.addElement(m);
+                    ComboBoxAgregar.setModel(modelo);
+                    AdminAuto aa=new AdminAuto("./Autos.cbm");
+                    aa.cargarArchivo();
+                    aa.setPersona(m);
+                    aa.escribirArchivo();
+                    JOptionPane.showMessageDialog(null, "Se ha agregado excitosamente");
+                    autos.add(m);
+                }
+            }    
+            
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Ingrese los datos correctos");
         }    
@@ -290,12 +354,24 @@ public class Principal extends javax.swing.JFrame {
 
     private void PistaUsarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PistaUsarBotonActionPerformed
         // TODO add your handling code here:
+        PistaTexto.setText(PistaNombre.getText());
+        LargoTexto.setText(PistaLargo.getText());
     }//GEN-LAST:event_PistaUsarBotonActionPerformed
 
     private void ReiniciarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReiniciarBotonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ReiniciarBotonActionPerformed
 
+    public boolean unico(int b){
+        boolean y=false;
+        for(int i=0;i<autos.size();i++){
+            if(b==autos.get(i).getId()){
+                y=true;
+            }
+        }
+        return y;
+    }
+    
     /**
      * @param args the command line arguments
      */

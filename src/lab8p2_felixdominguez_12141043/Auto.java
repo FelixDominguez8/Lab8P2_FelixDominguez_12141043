@@ -73,7 +73,7 @@ public class Auto implements Serializable{
 
     @Override
     public String toString() {
-        return "id=" + id + ", nombre=" + nombre + ", color=" + color + ", distancia=" + distancia;
+        return nombre;
     }
     
 }
