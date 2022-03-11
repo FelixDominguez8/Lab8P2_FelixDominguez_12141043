@@ -57,7 +57,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="GuardarBoton" max="32767" attributes="0"/>
-                                  <Component id="NumeroId" max="32767" attributes="0"/>
+                                  <Component id="NumeroID" max="32767" attributes="0"/>
                                   <Component id="CorredorNombre" max="32767" attributes="0"/>
                                   <Component id="ColorBoton" max="32767" attributes="0"/>
                               </Group>
@@ -114,7 +114,7 @@
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="PistaLargo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="NumeroId" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="NumeroID" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -144,11 +144,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Comenzar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ComenzarBotonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="PRBoton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pausar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PRBotonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -192,6 +198,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Agregar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AgregarBotonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
@@ -217,18 +226,24 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Usar Pista"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PistaUsarBotonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="ReiniciarBoton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Reiniciar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ReiniciarBotonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="text" type="java.lang.String" value="Numero Identificador:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="NumeroId">
+    <Component class="javax.swing.JTextField" name="NumeroID">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
@@ -238,6 +253,15 @@
     <Component class="javax.swing.JTextField" name="CorredorNombre">
     </Component>
     <Component class="javax.swing.JComboBox" name="ComboBoxTipo">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="3">
+            <StringItem index="0" value="McQueen"/>
+            <StringItem index="1" value="Convertible"/>
+            <StringItem index="2" value="Nascar"/>
+          </StringArray>
+        </Property>
+      </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -246,11 +270,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Color"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ColorBotonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="GuardarBoton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Guardar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="GuardarBotonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -16,19 +16,19 @@ import java.util.ArrayList;
  *
  * @author Lenovo I7
  */
-public class AdminConvertible {
-    private ArrayList<Convertible> lista = new ArrayList();
+public class AdminAuto {
+    private ArrayList<Auto> lista = new ArrayList();
     private File archivo = null;
     
-    public AdminConvertible(String path) {
+    public AdminAuto(String path) {
         archivo = new File(path);
     }
 
-    public ArrayList<Convertible> getLista() {
+    public ArrayList<Auto> getLista() {
         return lista;
     }
 
-    public void setLista(ArrayList<Convertible> lista) {
+    public void setLista(ArrayList<Auto> lista) {
         this.lista = lista;
     }
 
@@ -45,17 +45,21 @@ public class AdminConvertible {
         return "lista=" + lista + ", archivo=" + archivo;
     }
     
+    public void setPersona(Auto p) {
+        this.lista.add(p);
+    }
+    
     public void cargarArchivo() {
         try {            
             lista = new ArrayList();
-            Convertible temp;
+            Auto temp;
             if (archivo.exists()) {
                 FileInputStream entrada
                     = new FileInputStream(archivo);
                 ObjectInputStream objeto
                     = new ObjectInputStream(entrada);
                 try {
-                    while ((temp = (Convertible) objeto.readObject()) != null) {
+                    while ((temp = (Auto) objeto.readObject()) != null) {
                         lista.add(temp);
                     }
                 } catch (EOFException e) {
@@ -75,7 +79,7 @@ public class AdminConvertible {
         try {
             fw = new FileOutputStream(archivo);
             bw = new ObjectOutputStream(fw);
-            for (Convertible t : lista) {
+            for (Auto t : lista) {
                 bw.writeObject(t);
             }
             bw.flush();

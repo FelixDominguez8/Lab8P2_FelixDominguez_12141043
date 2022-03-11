@@ -47,16 +47,16 @@ public class AdminNascar {
     
     public void cargarArchivo() {
         try {            
-            listaPersonas = new ArrayList();
-            persona temp;
+            lista = new ArrayList();
+            Nascar temp;
             if (archivo.exists()) {
                 FileInputStream entrada
                     = new FileInputStream(archivo);
                 ObjectInputStream objeto
                     = new ObjectInputStream(entrada);
                 try {
-                    while ((temp = (persona) objeto.readObject()) != null) {
-                        listaPersonas.add(temp);
+                    while ((temp = (Nascar) objeto.readObject()) != null) {
+                        lista.add(temp);
                     }
                 } catch (EOFException e) {
                     //encontro el final del archivo
@@ -75,7 +75,7 @@ public class AdminNascar {
         try {
             fw = new FileOutputStream(archivo);
             bw = new ObjectOutputStream(fw);
-            for (persona t : listaPersonas) {
+            for (Nascar t : lista) {
                 bw.writeObject(t);
             }
             bw.flush();

@@ -7,19 +7,26 @@ package lab8p2_felixdominguez_12141043;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Color;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.UIManager;
+import javax.swing.JColorChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Lenovo I7
  */
 public class Principal extends javax.swing.JFrame {
+    Color a;
 
     /**
      * Creates new form Principal
      */
     public Principal() {
         initComponents();
+        AdminAuto aa=new AdminAuto("./Autos.cbm");
+        aa.cargarArchivo();
+        DefaultComboBoxModel modelo=new DefaultComboBoxModel();
     }
 
     /**
@@ -49,7 +56,7 @@ public class Principal extends javax.swing.JFrame {
         PistaUsarBoton = new javax.swing.JButton();
         ReiniciarBoton = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        NumeroId = new javax.swing.JTextField();
+        NumeroID = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         CorredorNombre = new javax.swing.JTextField();
         ComboBoxTipo = new javax.swing.JComboBox<>();
@@ -59,8 +66,18 @@ public class Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         ComenzarBoton.setText("Comenzar");
+        ComenzarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComenzarBotonActionPerformed(evt);
+            }
+        });
 
         PRBoton.setText("Pausar");
+        PRBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PRBotonActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Pista:");
 
@@ -73,6 +90,11 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(Tabla);
 
         AgregarBoton.setText("Agregar");
+        AgregarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarBotonActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Nombre de la Pista:");
 
@@ -83,16 +105,38 @@ public class Principal extends javax.swing.JFrame {
         PistaLargo.setText(" ");
 
         PistaUsarBoton.setText("Usar Pista");
+        PistaUsarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PistaUsarBotonActionPerformed(evt);
+            }
+        });
 
         ReiniciarBoton.setText("Reiniciar");
+        ReiniciarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReiniciarBotonActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Numero Identificador:");
 
         jLabel6.setText("Nombre del Corredor:");
 
+        ComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "McQueen", "Convertible", "Nascar" }));
+
         ColorBoton.setText("Color");
+        ColorBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ColorBotonActionPerformed(evt);
+            }
+        });
 
         GuardarBoton.setText("Guardar");
+        GuardarBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarBotonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,7 +173,7 @@ public class Principal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(GuardarBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(NumeroId)
+                                    .addComponent(NumeroID)
                                     .addComponent(CorredorNombre)
                                     .addComponent(ColorBoton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +217,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(PistaLargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(NumeroId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(NumeroID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PistaUsarBoton)
@@ -193,6 +237,64 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ComenzarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComenzarBotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComenzarBotonActionPerformed
+
+    private void PRBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRBotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PRBotonActionPerformed
+
+    private void AgregarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarBotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AgregarBotonActionPerformed
+
+    private void ColorBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorBotonActionPerformed
+        // TODO add your handling code here:
+        a=JColorChooser.showDialog(rootPane, "Elige el Color del Auto", Color.yellow);
+        ColorBoton.setBackground(a);
+    }//GEN-LAST:event_ColorBotonActionPerformed
+
+    private void GuardarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarBotonActionPerformed
+        // TODO add your handling code here:
+        try{
+            String i=NumeroID.getText().replace(" ", "");
+            int id=Integer.parseInt(i);
+            if(ComboBoxTipo.getSelectedItem()=="McQueen"){
+                McQueen m=new McQueen(id,CorredorNombre.getText(),a);
+                AdminAuto aa=new AdminAuto("./Autos.cbm");
+                aa.cargarArchivo();
+                aa.setPersona(m);
+                aa.escribirArchivo();
+                JOptionPane.showMessageDialog(null, "Se ha agregado excitosamente");
+            }else if(ComboBoxTipo.getSelectedItem()=="Convertible"){
+                Convertible m=new Convertible(id,CorredorNombre.getText(),a);
+                AdminAuto aa=new AdminAuto("./Autos.cbm");
+                aa.cargarArchivo();
+                aa.setPersona(m);
+                aa.escribirArchivo();
+                JOptionPane.showMessageDialog(null, "Se ha agregado excitosamente");
+            }else if(ComboBoxTipo.getSelectedItem()=="Nacar"){
+                Nascar m=new Nascar(id,CorredorNombre.getText(),a);
+                AdminAuto aa=new AdminAuto("./Autos.cbm");
+                aa.cargarArchivo();
+                aa.setPersona(m);
+                aa.escribirArchivo();
+                JOptionPane.showMessageDialog(null, "Se ha agregado excitosamente");
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Ingrese los datos correctos");
+        }    
+    }//GEN-LAST:event_GuardarBotonActionPerformed
+
+    private void PistaUsarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PistaUsarBotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PistaUsarBotonActionPerformed
+
+    private void ReiniciarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReiniciarBotonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ReiniciarBotonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,7 +325,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField CorredorNombre;
     private javax.swing.JButton GuardarBoton;
     private javax.swing.JLabel LargoTexto;
-    private javax.swing.JTextField NumeroId;
+    private javax.swing.JTextField NumeroID;
     private javax.swing.JButton PRBoton;
     private javax.swing.JTextField PistaLargo;
     private javax.swing.JTextField PistaNombre;
