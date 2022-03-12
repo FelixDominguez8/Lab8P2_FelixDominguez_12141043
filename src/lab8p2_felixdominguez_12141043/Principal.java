@@ -36,7 +36,8 @@ public class Principal extends javax.swing.JFrame {
         modelo=new DefaultComboBoxModel(aa.getLista().toArray());
         ComboBoxAgregar.setModel(modelo);
         autos=aa.getLista();
-        hilo=new Hilo(Progreso);
+        hilo=new Hilo(Progreso,Tabla,autos);
+        
     }
 
     /**
@@ -269,7 +270,7 @@ public class Principal extends javax.swing.JFrame {
         if(hilo.isAlive()){
             
         }else{
-            hilo=new Hilo(Progreso);
+            hilo=new Hilo(Progreso,Tabla,autos);
             Progreso.setValue(0);
             hilo.start();
         }
@@ -285,6 +286,7 @@ public class Principal extends javax.swing.JFrame {
             hilo.setSigue(true);
             PRBoton.setText("Pausar");
         }
+        
         
     }//GEN-LAST:event_PRBotonActionPerformed
 
