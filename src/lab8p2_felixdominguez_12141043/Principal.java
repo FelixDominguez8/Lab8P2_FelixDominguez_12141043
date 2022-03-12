@@ -12,6 +12,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.UIManager;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JProgressBar;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,6 +23,8 @@ public class Principal extends javax.swing.JFrame {
     Color a;
     DefaultComboBoxModel modelo;
     ArrayList<Auto>autos=new ArrayList();
+    Hilo hilo;
+    ArrayList<Integer>filas=new ArrayList();
 
     /**
      * Creates new form Principal
@@ -33,6 +36,7 @@ public class Principal extends javax.swing.JFrame {
         modelo=new DefaultComboBoxModel(aa.getLista().toArray());
         ComboBoxAgregar.setModel(modelo);
         autos=aa.getLista();
+        hilo=new Hilo(Progreso);
     }
 
     /**
@@ -262,31 +266,30 @@ public class Principal extends javax.swing.JFrame {
 
     private void ComenzarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComenzarBotonActionPerformed
         // TODO add your handling code here:
+        if(hilo.isAlive()){
+            
+        }else{
+            hilo=new Hilo(Progreso);
+            Progreso.setValue(0);
+            hilo.start();
+        }
+        
     }//GEN-LAST:event_ComenzarBotonActionPerformed
 
     private void PRBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PRBotonActionPerformed
         // TODO add your handling code here:
+        if(PRBoton.getText().equals("Pausar")){
+            hilo.setSigue(false);
+            PRBoton.setText("Reanudar");
+        }else if(PRBoton.getText().equals("Reanudar")){
+            hilo.setSigue(true);
+            PRBoton.setText("Pausar");
+        }
+        
     }//GEN-LAST:event_PRBotonActionPerformed
 
     private void AgregarBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarBotonActionPerformed
-        // TODO add your handling code here:
-        /*Tabla.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Identificador", "Corredor", "Distancia"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(Tabla);*/
+        
         
         Object[] fila={
                 autos.get(ComboBoxAgregar.getSelectedIndex()).getId(),
@@ -294,8 +297,20 @@ public class Principal extends javax.swing.JFrame {
                 autos.get(ComboBoxAgregar.getSelectedIndex()).getDistancia()
             };
             DefaultTableModel model = (DefaultTableModel) Tabla.getModel();
-            model.addRow(fila);
-            Tabla.setModel(model);
+            boolean ma=false;
+            
+            for(int i=0;i<filas.size();i++){
+                if(filas.get(i)==autos.get(ComboBoxAgregar.getSelectedIndex()).getId()){
+                    ma=true;
+                }
+            }
+            if(ma==true){
+                
+            }else{
+                filas.add(autos.get(ComboBoxAgregar.getSelectedIndex()).getId());
+                model.addRow(fila);
+                Tabla.setModel(model);
+            }
         
     }//GEN-LAST:event_AgregarBotonActionPerformed
 
